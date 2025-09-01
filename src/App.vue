@@ -1,7 +1,9 @@
 <script setup></script>
 
 <template>
-  <el-button type="primary">Primary</el-button>
+<!-- 路由渲染 -->
+  <RouterView/>
+<!--  <el-button type="primary">Primary</el-button>-->
 </template>
 
 <style scoped></style>
