@@ -10,10 +10,10 @@ import '@/styles/common.scss'
 const app = createApp(App)
 
 //测试调用axios函数
-import {getCategary} from '@/apis/testApi.js'
-getCategary().then(res=>{
-  console.log(res)
-})
+// import {getCategary} from '@/apis/testApi.js'
+// getCategary().then(res=>{
+//   console.log(res)
+// })
 
 app.use(createPinia())
 app.use(router)
