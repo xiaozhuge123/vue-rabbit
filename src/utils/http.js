@@ -2,7 +2,8 @@ import axios from 'axios'
 import 'element-plus/es/components/message/style/css'
 import {ElMessage} from "element-plus";
 import { getUserStore } from "@/stores/user.js";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 // 创建axios实例
 const httpInstance = axios.create({
   baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
@@ -23,7 +24,14 @@ httpInstance.interceptors.request.use(config => {
 
 // axios响应式拦截器
 httpInstance.interceptors.response.use(res => res.data, e => {
+  const userStore = getUserStore()
   ElMessage({ type: 'warning', message: e.response.data.message })
+  //登录失效处理
+  if(e.response.data.status === 401) {
+    userStore.clearUserInfo()
+    // 2.跳转到登录页
+    router.push('/login')
+  }
   return Promise.reject(e)
 })
 
